@@ -1,0 +1,12 @@
+	void updateFlow(graph residualG, graph G){           // Updates the residual graph at each iteration
+        int cf = findMin(residualG);
+	    for(int i=0;i<sp;i++){
+            if(G.getCapacity(arr[i]->u,arr[i]->v) != 0)
+                residualG.setFlow(arr[i]->u,arr[i]->v,residualG.getFlow(arr[i]->u,arr[i]->v)+cf);
+            else
+                residualG.setFlow(arr[i]->v,arr[i]->u,residualG.getFlow(arr[i]->v,arr[i]->u)-cf);
+
+                residualG.setCapacity(arr[i]->u,arr[i]->v,G.getCapacity(arr[i]->u,arr[i]->v)-residualG.getFlow(arr[i]->u,arr[i]->v));
+                residualG.setCapacity(arr[i]->v,arr[i]->u,G.getCapacity(arr[i]->v,arr[i]->u)+cf);
+		}
+	}
