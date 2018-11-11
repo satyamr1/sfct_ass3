@@ -5,14 +5,14 @@ graph FF(graph G, int source, int sink, bool UseBFS){
 	if(UseBFS){             // Running for path given by BFS
 		path = bfs(augG,source,sink);
 		while(!path.isEmpty()){     //Till no path found
-			path.updateFlow(augG);  // Update the residual graph
+			path.updateFlow(augG, G);  // Update the residual graph
 			path = bfs(augG,source,sink);
 		}
 	}
 	else {
 		path = dfs(augG,source,sink);
 		while(!path.isEmpty()){     //Till no path found
-			path.updateFlow(augG);  // Update the residual graph
+			path.updateFlow(augG, G);  // Update the residual graph
 			path = dfs(augG,source,sink);
 		}
 	}
